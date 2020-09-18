@@ -1,8 +1,8 @@
 # fuego-de-quasar
-Operacion Fuego De Quasar Challenge
+# Operacion Fuego De Quasar Challenge
 
 El siguiente programa recibe mensajes de tipo POST con el siguiente formato JSON:
-
+``` JSON
 {
 			"satellites": [
 				{
@@ -22,9 +22,9 @@ El siguiente programa recibe mensajes de tipo POST con el siguiente formato JSON
 				}
 			]
 	}
-  
+  ```
   Si los datos son correctos, la aplicación devolverá una respuesta similar a la que se muestra a continuación:
-  
+  ``` JSON
   {
     "message": "este es un mensaje secreto ",
     "position": {
@@ -32,3 +32,4 @@ El siguiente programa recibe mensajes de tipo POST con el siguiente formato JSON
         "y": 1.0
     }
 }
+```
