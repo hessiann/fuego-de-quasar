@@ -27,6 +27,17 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}
 
+	@ExceptionHandler(InformationNotSufficientException.class)
+	public final ResponseEntity<Object> handleInformationNotSufficientException(InformationNotSufficientException ex,
+			WebRequest request) {
+
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put("timestamp", LocalDateTime.now());
+		body.put("message", "Information not sufficient");
+
+		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+	}
+
 	@ExceptionHandler(CoordinatesNotFoundException.class)
 	public final ResponseEntity<Object> handleCoordinatesNotFoundException(CoordinatesNotFoundException ex,
 			WebRequest request) {
