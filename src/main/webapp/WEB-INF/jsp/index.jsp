@@ -14,7 +14,7 @@
 			You can send messages to "/topsecret" using the following template:
 		</p>
 		<br>
-		<p>
+		<pre>
 		POST -> /topsecret/
 		{
 			"satellites": [
@@ -35,7 +35,7 @@
 				}
 			]
 		}
-		</p>
+		</pre>
 		
 	</body>
 </html>
