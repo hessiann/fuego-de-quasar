@@ -13,10 +13,11 @@ import org.springframework.stereotype.Service;
 
 import com.lemmingapex.trilateration.NonLinearLeastSquaresSolver;
 import com.lemmingapex.trilateration.TrilaterationFunction;
-import com.meli.quasar.exception.MessageNotFoundException;
+import com.meli.quasar.exception.CoordinatesNotFoundException;
 import com.meli.quasar.model.Satellite;
 import com.meli.quasar.model.dto.LocationDto;
 import com.meli.quasar.model.request.TopSecretSatelliteRequest;
+import com.meli.quasar.utils.Constants;
 
 @Service
 public class CalculateCoordinatesService {
@@ -25,7 +26,7 @@ public class CalculateCoordinatesService {
 	private SatelliteService ss;
 
 	public LocationDto calculateCoordinates(List<TopSecretSatelliteRequest> satellites)
-			throws MessageNotFoundException {
+			throws CoordinatesNotFoundException {
 
 		List<Satellite> satellitesInfo = ss.getSatellites();
 		Map<String, Double> map;
@@ -34,11 +35,11 @@ public class CalculateCoordinatesService {
 			map = satellites.stream().collect(
 					Collectors.toMap(TopSecretSatelliteRequest::getName, TopSecretSatelliteRequest::getDistance));
 		} catch (Exception e) {
-			throw new MessageNotFoundException("404 - Information missing or not found.");
+			throw new CoordinatesNotFoundException(Constants.COORDINATES_BROKEN);
 		}
 
 		if (map.size() != satellitesInfo.size()) {
-			throw new MessageNotFoundException("Satellites count do not match.");
+			throw new CoordinatesNotFoundException(Constants.COORDINATES_BROKEN);
 		}
 
 		double[][] positions = new double[satellites.size()][2];
@@ -52,7 +53,7 @@ public class CalculateCoordinatesService {
 				distances[idx] = (double) map.get(s.getName());
 				idx++;
 			} else {
-				throw new MessageNotFoundException("Satellite not found.");
+				throw new CoordinatesNotFoundException(Constants.COORDINATES_BROKEN);
 			}
 		}
 
@@ -72,7 +73,7 @@ public class CalculateCoordinatesService {
 
 	private static double round(double value, int places) {
 		if (places < 0)
-			throw new IllegalArgumentException();
+			throw new CoordinatesNotFoundException(Constants.WRONG_PLACES);
 
 		BigDecimal bd = new BigDecimal(Double.toString(value));
 		bd = bd.setScale(places, RoundingMode.HALF_UP);

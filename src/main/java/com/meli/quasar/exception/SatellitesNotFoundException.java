@@ -1,13 +1,13 @@
 package com.meli.quasar.exception;
 
-public class MessageNotFoundException extends RuntimeException {
+public class SatellitesNotFoundException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public MessageNotFoundException(String message) {
+	public SatellitesNotFoundException(String message) {
 		super(message);
 	}
 }

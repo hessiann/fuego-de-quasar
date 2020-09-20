@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.meli.quasar.exception.MessageNotFoundException;
 import com.meli.quasar.model.request.TopSecretSatelliteRequest;
+import com.meli.quasar.utils.Constants;
 
 @Service
 public class RetrieveMessageService {
@@ -20,7 +21,7 @@ public class RetrieveMessageService {
 		int messageLength = messages.get(0).size();
 
 		if (!messages.stream().allMatch(message -> sameSize(message, messageLength))) {
-			throw new MessageNotFoundException("404 RETRIEVING THE MESSAGE");
+			throw new MessageNotFoundException(Constants.MESSAGE_BROKEN);
 		}
 
 		StringBuilder word = new StringBuilder("");
@@ -32,13 +33,13 @@ public class RetrieveMessageService {
 						word.append(list.get(i).toString());
 						fullMessage.append(word.toString()).append(" ");
 					} else if (!word.toString().equalsIgnoreCase(list.get(i).toString())) {
-						throw new MessageNotFoundException("404 RETRIEVING THE MESSAGE");
+						throw new MessageNotFoundException(Constants.MESSAGE_BROKEN);
 					}
 				}
 			}
 
 			if (word.length() == 0) {
-				throw new MessageNotFoundException("404 RETRIEVING THE MESSAGE");
+				throw new MessageNotFoundException(Constants.MESSAGE_BROKEN);
 			}
 
 			word.delete(0, word.length());
@@ -50,11 +51,5 @@ public class RetrieveMessageService {
 	private boolean sameSize(List<String> message, int messageLength) {
 		return message.size() == messageLength;
 	}
-
-//	@ExceptionHandler(value = MessageNotFoundException.class)
-//	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-//	public String handleMessageNotFoundException(MessageNotFoundException ex) {
-//		return ex.getMessage();
-//	}
 
 }

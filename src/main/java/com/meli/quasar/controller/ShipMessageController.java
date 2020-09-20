@@ -5,12 +5,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meli.quasar.exception.MessageNotFoundException;
+import com.meli.quasar.exception.SatellitesNotFoundException;
 import com.meli.quasar.model.dto.LocationDto;
 import com.meli.quasar.model.request.TopSecretRequest;
 import com.meli.quasar.model.response.TopSecretResponse;
 import com.meli.quasar.service.CalculateCoordinatesService;
 import com.meli.quasar.service.RetrieveMessageService;
+import com.meli.quasar.utils.Constants;
 
 @RestController
 public class ShipMessageController {
@@ -22,11 +23,10 @@ public class ShipMessageController {
 	private RetrieveMessageService messageService;
 
 	@PostMapping("/topsecret")
-	public TopSecretResponse getMessageAndLocation(@RequestBody TopSecretRequest message)
-			throws MessageNotFoundException {
+	public TopSecretResponse getMessageAndLocation(@RequestBody TopSecretRequest message) {
 
 		if (message.getSatellites() == null || message.getSatellites().isEmpty()) {
-			throw new MessageNotFoundException("La lista vino vacia");
+			throw new SatellitesNotFoundException(Constants.NO_SATELLITES);
 		}
 
 		String fullMessage = messageService.retrieveMessage(message.getSatellites());
@@ -34,13 +34,5 @@ public class ShipMessageController {
 		TopSecretResponse response = new TopSecretResponse(fullMessage, location);
 
 		return response;
-		// throw new MessageNotFoundException("LA CONCHA BIEN DE TU MADRE");
 	}
-
-//	@ExceptionHandler(value = MessageNotFoundException.class)
-//	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-//	public String handleMessageNotFoundException(MessageNotFoundException ex) {
-//		return ex.getMessage();
-//	}
-
 }
