@@ -18,7 +18,12 @@ public class RetrieveMessageService {
 				.collect(Collectors.toList());
 
 		StringBuilder fullMessage = new StringBuilder();
-		int messageLength = messages.get(0).size();
+		int messageLength;
+		try {
+			messageLength = messages.get(0).size();
+		} catch (Exception e) {
+			throw new MessageNotFoundException(Constants.MESSAGE_BROKEN);
+		}
 
 		if (!messages.stream().allMatch(message -> sameSize(message, messageLength))) {
 			throw new MessageNotFoundException(Constants.MESSAGE_BROKEN);
@@ -53,7 +58,11 @@ public class RetrieveMessageService {
 	}
 
 	private boolean sameSize(List<String> message, int messageLength) {
-		return message.size() == messageLength;
+		try {
+			return message.size() == messageLength;
+		} catch (Exception e) {
+			throw new MessageNotFoundException(Constants.MESSAGE_BROKEN);
+		}
 	}
 
 }
