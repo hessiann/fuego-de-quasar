@@ -253,3 +253,83 @@ Hello world
 }
 ```
 ---
+
+  # Casos de prueba /topsecret_split/
+  
+  ### Prueba POST exitosa en /topsecret_split/ -> Primer mensaje
+  
+``` JSON
+ POST -> http://localhost:8080/topsecret_split/kenobi
+ 
+{
+		"distance": 5.0,
+		"message": ["este", "", "", "mensaje", ""]
+}
+``` 
+  Respuesta esperada:
+``` JSON 
+ RESPONSE CODE: 200 
+{
+    "message": "Message received"
+}
+``` 
+---
+
+### Prueba POST exitosa en /topsecret_split/ -> Segundo mensaje
+  
+``` JSON
+ POST -> http://localhost:8080/topsecret_split/skywalker
+ 
+{
+		"distance": 5.0,
+		"message": ["", "es", "", "", "secreto"]
+}
+``` 
+  Respuesta esperada:
+``` JSON 
+ RESPONSE CODE: 200 
+{
+    "message": "Message received"
+}
+``` 
+---
+
+### Prueba POST exitosa en /topsecret_split/ -> Tercer mensaje
+  
+``` JSON
+ POST -> http://localhost:8080/topsecret_split/sato
+ 
+{
+		"distance": 13.0,
+		"message": ["", "", "un", "", ""]
+}
+``` 
+  Respuesta esperada:
+``` JSON 
+ RESPONSE CODE: 200 
+{
+    "message": "Message received"
+}
+``` 
+---
+
+### Prueba GET exitosa en /topsecret_split/ -> Ya existe información sobre los tres satélites
+  
+``` JSON
+ GET -> http://localhost:8080/topsecret_split/
+ 
+
+``` 
+  Respuesta esperada:
+``` JSON 
+ RESPONSE CODE: 200 
+{
+    "message": "este es un mensaje secreto",
+    "position": {
+        "x": 1.0,
+        "y": 1.0
+    }
+}
+``` 
+---
+  

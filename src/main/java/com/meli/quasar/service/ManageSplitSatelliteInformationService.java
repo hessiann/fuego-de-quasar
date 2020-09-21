@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.meli.quasar.model.Satellite;
 import com.meli.quasar.model.request.TopSecretSatelliteRequest;
+import com.meli.quasar.model.response.TopSecretResponse;
 
 @Service
 public class ManageSplitSatelliteInformationService {
@@ -55,5 +56,10 @@ public class ManageSplitSatelliteInformationService {
 
 	public void removeSatelliteInformation() {
 		listRequest.removeAll(listRequest);
+	}
+
+	public TopSecretResponse getMessageAndLocation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

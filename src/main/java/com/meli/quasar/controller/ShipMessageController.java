@@ -31,7 +31,7 @@ public class ShipMessageController {
 	private RetrieveMessageService messageService;
 
 	@Autowired
-	private ManageSplitSatelliteInformationService save;
+	private ManageSplitSatelliteInformationService manager;
 
 	@PostMapping("/topsecret")
 	public TopSecretResponse getMessageAndLocation(@RequestBody TopSecretRequest message) {
@@ -51,7 +51,7 @@ public class ShipMessageController {
 	public TopSecretSplitResponse postMessageAndLocation(@PathVariable String satellite_name,
 			@RequestBody TopSecretSplitRequest message) {
 
-		save.saveSplitSatelliteInformation(
+		manager.saveSplitSatelliteInformation(
 				new TopSecretSatelliteRequest(satellite_name, message.getDistance(), message.getMessage()));
 
 		return new TopSecretSplitResponse("Message received");
@@ -61,11 +61,11 @@ public class ShipMessageController {
 	public TopSecretResponse getMessageAndLocation(@PathVariable String satellite_name,
 			@RequestBody TopSecretSplitRequest message) {
 
-		if (save.saveSplitSatelliteInformation(
+		if (manager.saveSplitSatelliteInformation(
 				new TopSecretSatelliteRequest(satellite_name, message.getDistance(), message.getMessage()))) {
 
-			String fullMessage = messageService.retrieveMessage(save.getListRequest());
-			LocationDto location = coordinatesService.calculateCoordinates(save.getListRequest());
+			String fullMessage = messageService.retrieveMessage(manager.getListRequest());
+			LocationDto location = coordinatesService.calculateCoordinates(manager.getListRequest());
 			TopSecretResponse response = new TopSecretResponse(fullMessage, location);
 
 			return response;
@@ -77,7 +77,21 @@ public class ShipMessageController {
 
 	@GetMapping("/topsecret_split/removeAll")
 	public RemoveResponse removeSatelliteInformation() {
-		save.removeSatelliteInformation();
+		manager.removeSatelliteInformation();
 		return new RemoveResponse("List deleted");
+	}
+
+	@GetMapping("/topsecret_split")
+	public TopSecretResponse getMessageAndLocation() {
+		try {
+			String fullMessage = messageService.retrieveMessage(manager.getListRequest());
+			LocationDto location = coordinatesService.calculateCoordinates(manager.getListRequest());
+			TopSecretResponse response = new TopSecretResponse(fullMessage, location);
+
+			return response;
+		} catch (Exception e) {
+			throw new InformationNotSufficientException(Constants.INFORMATION_NOT_SUFFICIENT);
+		}
+
 	}
 }
