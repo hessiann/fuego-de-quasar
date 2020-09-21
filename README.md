@@ -1,26 +1,27 @@
   # Operacion Fuego De Quasar Challenge
 
-  El programa Operacion Fuego de Quasar recibe mensajes de tipo POST con el siguiente formato JSON:
+  El programa Operacion Fuego de Quasar presenta un servicio /topsecret/ que recibe mensajes 
+  de tipo POST con el siguiente formato JSON:
   
 ``` JSON
 {
-			"satellites": [
-				{
-				"name": "kenobi",
-				"distance": 5.0,
-				"message": ["este", "", "", "mensaje", ""]
-				},
-				{
-				"name": "skywalker",
-				"distance": 5.0,
-				"message": ["", "es", "", "", "secreto"]
-				},
-				{
-				"name": "sato",
-				"distance": 13.0,
-				"message": ["", "", "un", "", ""]
-				}
-			]
+	"satellites": [
+			{
+			"name": "kenobi",
+			"distance": 5.0,
+			"message": ["este", "", "", "mensaje", ""]
+			},
+			{
+			"name": "skywalker",
+			"distance": 5.0,
+			"message": ["", "es", "", "", "secreto"]
+			},
+			{
+			"name": "sato",
+			"distance": 13.0,
+			"message": ["", "", "un", "", ""]
+			}
+	]
 }
   ```
   Dichos mensajes contienen un arreglo de satelites, su distancia a una nave objetivo y un mensaje secreto fraccionado que
@@ -34,7 +35,7 @@
     <groupId>com.lemmingapex.trilateration</groupId>
     <artifactId>trilateration</artifactId>
     <version>1.0.2</version>
-	</dependency>
+  </dependency>
   ```
   Para leer más sobre el método y su implementación, referirse a:
   [Lemmingapex trilateration]:https://github.com/lemmingapex/trilateration/blob/master/README.md
@@ -43,6 +44,7 @@
    
   
   ``` JSON
+  RESPONSE CODE: 200
 {
     "message": "este es un mensaje secreto ",
     "position": {
