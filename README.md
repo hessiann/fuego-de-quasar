@@ -29,8 +29,8 @@
   
 ``` JSON  
 {
-    "kenobi": [-500, 200],
-    "skywalker": [100, -100],
+	"kenobi": [-500, 200],
+	"skywalker": [100, -100],
 	"sato": [500, 100]
 }
 ```   
@@ -48,7 +48,7 @@
   </dependency>
   ```
   Para leer más sobre el método y su implementación, referirse a:
-  [Lemmingapex trilateration]:https://github.com/lemmingapex/trilateration/blob/master/README.md
+  [Lemmingapex trilateration](https://github.com/lemmingapex/trilateration/blob/master/README.md)
   
   Si los datos son correctos, la aplicación devolverá una respuesta similar a la que se muestra a continuación:
    
@@ -63,6 +63,8 @@
     }
 }
 ```
+  En el caso de que no se pudiera calcular las coordenadas de la nave objetivo o no se pudiese reconstruir el mensaje original,
+  la aplicación devuelve un RESPONSE CODE: 404.
   Además, existe un segundo servicio /topsecret_split/ que acepta POST y GET y recibe información de un satélite
   a la vez, como se muestra a continuación:
   ``` JSON
