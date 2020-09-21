@@ -82,5 +82,5 @@
   
   ## Casos de prueba
   
-  En el archivo [Test cases]:https://github.com/hessiann/fuego-de-quasar/blob/master/testcases.md se facilitan
+  En el archivo [Test cases](https://github.com/hessiann/fuego-de-quasar/blob/master/testcases.md) se facilitan
   algunos casos de prueba y sus respectivas respuestas esperadas.
