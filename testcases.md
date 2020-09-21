@@ -349,5 +349,20 @@ Hello world
 ``` 
 ---
 
+### Prueba GET errónea en /topsecret_split/ -> No existe información suficiente
+  
+``` JSON
+ GET -> http://localhost:8080/topsecret_split/
+ 
+
+``` 
+  Respuesta esperada:
+``` JSON 
+ RESPONSE CODE: 404 
+{
+    "timestamp": "2020-09-21T14:37:58.896",
+    "message": "Information not sufficient"
+}
+``` 
 
   
