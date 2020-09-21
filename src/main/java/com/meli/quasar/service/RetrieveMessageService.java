@@ -31,7 +31,11 @@ public class RetrieveMessageService {
 				if (!"".equalsIgnoreCase(list.get(i).toString())) {
 					if (word.length() == 0) {
 						word.append(list.get(i).toString());
-						fullMessage.append(word.toString()).append(" ");
+						if (i == messageLength - 1) {
+							fullMessage.append(word.toString());
+						} else {
+							fullMessage.append(word.toString()).append(" ");
+						}
 					} else if (!word.toString().equalsIgnoreCase(list.get(i).toString())) {
 						throw new MessageNotFoundException(Constants.MESSAGE_BROKEN);
 					}

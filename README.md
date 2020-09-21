@@ -56,7 +56,7 @@
   ``` JSON
   RESPONSE CODE: 200
 {
-    "message": "este es un mensaje secreto ",
+    "message": "este es un mensaje secreto",
     "position": {
         "x": 1.0,
         "y": 1.0
