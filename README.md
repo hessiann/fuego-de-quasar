@@ -29,9 +29,9 @@
   
 ``` JSON  
 {
-	"kenobi": [-500, 200],
-	"skywalker": [100, -100],
-	"sato": [500, 100]
+	"kenobi": [5, 4],
+	"skywalker": [4, -3],
+	"sato": [-4, 13]
 }
 ```   
   Los mensajes que se envían al servicio contienen un arreglo de satelites, su distancia a una nave objetivo y 
