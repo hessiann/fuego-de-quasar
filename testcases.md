@@ -332,4 +332,22 @@ Hello world
 }
 ``` 
 ---
+
+### Prueba GET exitosa en /topsecret_split/removeAll -> Borra toda la información enviada por la nave
+  
+``` JSON
+ GET -> http://localhost:8080/topsecret_split/removeAll
+ 
+
+``` 
+  Respuesta esperada:
+``` JSON 
+ RESPONSE CODE: 200 
+{
+  "message": "List deleted"
+}
+``` 
+---
+
+
   
