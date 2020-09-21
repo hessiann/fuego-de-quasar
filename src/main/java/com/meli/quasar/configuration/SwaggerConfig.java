@@ -40,6 +40,6 @@ public class SwaggerConfig {
 	}
 
 	private Predicate<String> endpoints() {
-		return or(regex(".*quasar-api.*"), regex(".*actuator.*"));
+		return or(regex(".*topsecret*.*"), regex(".*actuator.*"));
 	}
 }
